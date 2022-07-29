@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { Actors, Movies, MovieInformation, Profile, Navbar } from "./components";
 import Logo from "./assets/logo.png";
+import { motion } from "framer-motion";
 
 const categories = [
 	{ label: "Popular", value: "popular" },
@@ -35,22 +36,58 @@ const App = () => {
 				</div>
 				<div className="drawer-side">
 					<label for="my-drawer-2" className="drawer-overlay"></label>
-					<ul className="menu p-4 overflow-y-auto w-60 bg-base-100 text-base-content">
+					<ul className="menu overflow-y-auto p-2 w-60 bg-base-100 text-base-content">
 						{/* //! SIDBAR CONTENT HERE */}
-						<li>
-							<Link to="/">
+
+						<Link
+							to="/"
+							className="flex items-center justify-center pt-4 hover:scale-105 duration-200 "
+						>
+							<motion.div
+								animate={{ rotate: 360 }}
+								transition={{
+									type: "spring",
+									damping: 10,
+									mass: 0.75,
+									stiffness: 100,
+								}}
+							>
 								<img src={Logo} alt="logo" />
-							</Link>
-						</li>
+							</motion.div>
+						</Link>
+
 						<div class="divider"></div>
-						<p className="text-lg uppercase tracking-wide">Categories</p>
+
+						<p className="text-md  tracking-wide">Categories</p>
+
+						{categories.map((item) => {
+							return (
+								<Link key={item.value} to="/">
+									<motion.li
+										whileHover={{ scale: 1.1 }}
+										whileTap={{ scale: 0.9 }}
+										onClick={() => {}}
+										className="py-3 px-2 hover:bg-[#5bb5bce0] "
+									>
+										{item.label}
+									</motion.li>
+								</Link>
+							);
+						})}
+						<div class="divider"></div>
+						<p className="text-md  tracking-wide">Genres</p>
 
 						{demoCategories.map((item) => {
 							return (
 								<Link key={item.value} to="/">
-									<li onClick={() => {}} className="py-4">
+									<motion.li
+										whileHover={{ scale: 1.1 }}
+										whileTap={{ scale: 0.9 }}
+										onClick={() => {}}
+										className="py-3 px-2 hover:bg-base-300 "
+									>
 										{item.label}
-									</li>
+									</motion.li>
 								</Link>
 							);
 						})}
