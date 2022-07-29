@@ -34,7 +34,7 @@ const App = () => {
 						</Routes>
 					</main>
 				</div>
-				<div className="drawer-side">
+				<div className="drawer-side border ">
 					<label for="my-drawer-2" className="drawer-overlay"></label>
 					<ul className="menu overflow-y-auto p-2 w-60 bg-base-100 text-base-content">
 						{/* //! SIDBAR CONTENT HERE */}
