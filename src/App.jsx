@@ -42,6 +42,9 @@ const App = () => {
 						<Link
 							to="/"
 							className="flex items-center justify-center pt-4 hover:scale-105 duration-200 "
+							onClick={() => {
+								document.getElementById("my-drawer-2").click();
+							}}
 						>
 							<motion.div
 								animate={{ rotate: 360 }}
