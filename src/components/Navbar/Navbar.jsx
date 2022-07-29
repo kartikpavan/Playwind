@@ -11,12 +11,12 @@ const Navbar = () => {
 		<main>
 			<nav className="w-full h-[80px] bg-accent-focus flex items-center justify-between px-2 md:px-8 py-4">
 				<div className="lg:hidden">
-					<label class="swap swap-rotate" htmlFor="my-drawer-2">
+					<label className="swap swap-rotate" htmlFor="my-drawer-2">
 						{/* <!-- this hidden checkbox controls the state --> */}
 						<input type="checkbox" />
 						{/* <!-- hamburger icon --> */}
 						<svg
-							class="swap-off fill-current"
+							className="swap-off fill-current"
 							xmlns="http://www.w3.org/2000/svg"
 							width="32"
 							height="32"
