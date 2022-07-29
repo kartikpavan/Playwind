@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Spinner from "../Spinner/Spinner";
+import { Spinner, MovieList } from "../../components";
 import { useSelector } from "react-redux";
 import { useGetMoviesQuery } from "../../services/TMDB";
 
@@ -7,6 +7,16 @@ const Movies = () => {
 	const { data, error, isLoading } = useGetMoviesQuery();
 
 	console.log(data);
+
+	// if (data.results.length) {
+	// 	return (
+	// 		<div className="w-full flex item justify-center m-2">
+	// 			<h1>No movies that match the name</h1>
+	// 			<br />
+	// 		</div>
+	// 	);
+	// }
+
 	return (
 		<div className="m-2">
 			<h1 className="text-2xl ">
@@ -16,11 +26,7 @@ const Movies = () => {
 					<Spinner />
 				) : data ? (
 					<>
-						<h1 className="text-xl">
-							{data.results.map((item) => {
-								return <div key={item.id}>{item.title}</div>;
-							})}
-						</h1>
+						<MovieList movies={data} />
 					</>
 				) : null}
 			</h1>
