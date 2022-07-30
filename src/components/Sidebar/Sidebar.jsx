@@ -2,21 +2,19 @@ import React from "react";
 import Logo from "../../assets/logo.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useGetGenresQuery } from "../../services/TMDB";
+import Spinner from "../Spinner/Spinner";
+import genreIcons from "../../assets/genres";
 
 const categories = [
 	{ label: "Popular", value: "popular" },
 	{ label: "Top Rated", value: "top_rated" },
 	{ label: "Upcoming", value: "upcoming" },
 ];
-const demoCategories = [
-	{ label: "Comedy", value: "comedy" },
-	{ label: "Action", value: "action" },
-	{ label: "Adventure", value: "adventure" },
-	{ label: "Horror", value: "horror" },
-	{ label: "Romance", value: "romance" },
-];
 
 const Sidebar = () => {
+	const { data, error, isLoading } = useGetGenresQuery();
+	console.log(data);
 	return (
 		<div>
 			<Link
@@ -46,34 +44,53 @@ const Sidebar = () => {
 			{categories.map((item) => {
 				return (
 					<Link key={item.value} to="/">
-						<motion.li
+						<motion.div
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.9 }}
 							onClick={() => {}}
 							className="py-3 px-2 hover:bg-[#5bb5bce0]  "
 						>
-							{item.label}
-						</motion.li>
+							<div className="flex items-center gap-2">
+								<img
+									src={genreIcons[item.label.toLowerCase()]}
+									alt="/"
+									className="w-6 md:w-8"
+								/>
+								<p>{item.label}</p>
+							</div>
+						</motion.div>
 					</Link>
 				);
 			})}
 			<div className="divider"></div>
 			<p className="text-md font-semibold text-accent-focus tracking-wide">Genres</p>
-
-			{demoCategories.map((item) => {
-				return (
-					<Link key={item.value} to="/">
-						<motion.li
-							whileHover={{ scale: 1.1 }}
-							whileTap={{ scale: 0.9 }}
-							onClick={() => {}}
-							className="py-3 px-2 hover:bg-base-300  "
-						>
-							{item.label}
-						</motion.li>
-					</Link>
-				);
-			})}
+			{error ? (
+				<h1 className="text-2xl text-red-400">There was an Error</h1>
+			) : isLoading ? (
+				<Spinner />
+			) : data ? (
+				data.genres.map((genre) => {
+					return (
+						<Link key={genre.id} to="/">
+							<motion.div
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.9 }}
+								onClick={() => {}}
+								className="py-3 px-2 hover:bg-base-300 w-full "
+							>
+								<div className="flex items-center gap-2">
+									<img
+										src={genreIcons[genre.name.toLowerCase()]}
+										alt="/"
+										className="w-6 md:w-8"
+									/>
+									<p>{genre.name}</p>
+								</div>
+							</motion.div>
+						</Link>
+					);
+				})
+			) : null}
 		</div>
 	);
 };
