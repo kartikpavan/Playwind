@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useGetGenresQuery } from "../../services/TMDB";
 import Spinner from "../Spinner/Spinner";
 import genreIcons from "../../assets/genres";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGenre } from "../../features/CurrentGenre";
 
 const categories = [
 	{ label: "Popular", value: "popular" },
@@ -14,6 +16,8 @@ const categories = [
 
 const Sidebar = () => {
 	const { data, error, isLoading } = useGetGenresQuery();
+	const dispatch = useDispatch();
+
 	console.log(data);
 	return (
 		<div>
@@ -47,7 +51,7 @@ const Sidebar = () => {
 						<motion.div
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.9 }}
-							onClick={() => {}}
+							onClick={() => dispatch(selectGenre(item.value))}
 							className="py-3 px-2 hover:bg-[#5bb5bce0]  "
 						>
 							<div className="flex items-center gap-2">
@@ -75,7 +79,7 @@ const Sidebar = () => {
 							<motion.div
 								whileHover={{ scale: 1.1 }}
 								whileTap={{ scale: 0.9 }}
-								onClick={() => {}}
+								onClick={() => dispatch(selectGenre(genre.id))}
 								className="py-3 px-2 hover:bg-base-300 w-full "
 							>
 								<div className="flex items-center gap-2">

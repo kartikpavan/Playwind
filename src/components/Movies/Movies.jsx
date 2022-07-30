@@ -8,14 +8,14 @@ const Movies = () => {
 
 	console.log(data);
 
-	// if (data.results.length) {
-	// 	return (
-	// 		<div className="w-full flex item justify-center m-2">
-	// 			<h1>No movies that match the name</h1>
-	// 			<br />
-	// 		</div>
-	// 	);
-	// }
+	if (!data?.results.length) {
+		return (
+			<div className="w-full flex item justify-center m-2">
+				<h1>No movies that match the name</h1>
+				<br />
+			</div>
+		);
+	}
 
 	return (
 		<div className="m-2">
