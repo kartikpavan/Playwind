@@ -9,12 +9,9 @@ const Movie = ({ movie, index }) => {
 			<motion.div
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
-				transition={{ delay: 0, duration: 0.5 }}
+				transition={{ delay: 0, duration: 1 }}
 				exit={{ opacity: 0 }}
-				whileHover={{
-					scale: 1.05,
-				}}
-				className="w-[200px] text-ellipsis whitespace-nowrap overflow-hidden mt-10 mb-0 text-center"
+				className="w-[150px] sm:w-[200px] text-ellipsis whitespace-nowrap overflow-hidden mt-10 mb-0 text-center hover:scale-105 duration-200"
 			>
 				<div className="relative">
 					<Link to={`/movie/${movie?.id}`}>
