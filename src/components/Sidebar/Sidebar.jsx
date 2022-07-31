@@ -49,7 +49,7 @@ const Sidebar = () => {
 				return (
 					<Link key={item.value} to="/">
 						<motion.div
-							whileHover={{ scale: 1.1 }}
+							whileHover={{ scale: 1.07 }}
 							whileTap={{ scale: 0.9 }}
 							onClick={() => dispatch(selectGenre(item.value))}
 							className="py-3 px-2 hover:bg-[#5bb5bce0]  "
@@ -77,7 +77,7 @@ const Sidebar = () => {
 					return (
 						<Link key={genre.id} to="/">
 							<motion.div
-								whileHover={{ scale: 1.1 }}
+								whileHover={{ scale: 1.07 }}
 								whileTap={{ scale: 0.9 }}
 								onClick={() => dispatch(selectGenre(genre.id))}
 								className="py-3 px-2 hover:bg-base-300 w-full "
