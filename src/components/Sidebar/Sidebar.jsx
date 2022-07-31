@@ -15,7 +15,7 @@ const categories = [
 ];
 
 const Sidebar = () => {
-	const { data, error, isLoading } = useGetGenresQuery();
+	const { data, error, isFetching } = useGetGenresQuery();
 	const dispatch = useDispatch();
 
 	// console.log(data);
@@ -70,7 +70,7 @@ const Sidebar = () => {
 			<p className="text-md font-semibold text-accent-focus tracking-wide">Genres</p>
 			{error ? (
 				<h1 className="text-2xl text-red-400">There was an Error</h1>
-			) : isLoading ? (
+			) : isFetching ? (
 				<Spinner />
 			) : data ? (
 				data.genres.map((genre) => {

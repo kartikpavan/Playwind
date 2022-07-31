@@ -6,9 +6,9 @@ import { selectGenre } from "../../features/CurrentGenre";
 
 const Movies = () => {
 	const [page, setPage] = useState(1);
-	const { genreName } = useSelector((state) => state.currentGenre);
-	const { data, error, isLoading } = useGetMoviesQuery({ genreName, page });
-	// console.log(data);
+	const { genreName, searchQuery } = useSelector((state) => state.currentGenre);
+	const { data, error, isFetching } = useGetMoviesQuery({ genreName, page, searchQuery });
+	console.log(data);
 	if (!data?.results.length) {
 		return (
 			<div className="w-full flex item justify-center m-2">
@@ -23,7 +23,7 @@ const Movies = () => {
 			<h1 className="text-2xl ">
 				{error ? (
 					<h1 className="text-2xl text-red-400">There was an Error</h1>
-				) : isLoading ? (
+				) : isFetching ? (
 					<Spinner />
 				) : data ? (
 					<>

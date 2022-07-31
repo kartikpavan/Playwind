@@ -4,7 +4,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const tmdbApiKey = import.meta.env.VITE_MOVIE_API_KEY;
-const page = 1; //! dummy variable
+// const page = 1; //! dummy variable
 
 // https://api.themoviedb.org/3/movie/popular?api_key=API_KEY&language=en-US&page=1
 
@@ -12,23 +12,28 @@ export const tmdbApi = createApi({
 	reducerPath: "tmdbApi",
 	baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3" }),
 	endpoints: (builder) => ({
-		//* Get Genres
+		// Get Genres
 		getGenres: builder.query({
 			query: () => `genre/movie/list?api_key=${tmdbApiKey}`,
 		}),
 
 		//* Get Movies by [type]
 		getMovies: builder.query({
-			query: ({ genreName, page }) => {
-				//* get Movies by category like popular , trending etc
+			query: ({ genreName, page, searchQuery }) => {
+				// get Movies by search
+				if (searchQuery) {
+					return `search/movie?api_key=${tmdbApiKey}&page=${page}&query=${searchQuery}`;
+				}
+
+				// get Movies by category like popular , trending etc
 				if (genreName && typeof genreName === "string") {
 					return `movie/${genreName}?api_key=${tmdbApiKey}&page=${page}}`;
 				}
-				//* Get movies by genre like comedy, thriller etc
+				// Get movies by genre like comedy, thriller etc
 				if (genreName && typeof genreName === "number") {
 					return `discover/movie?api_key=${tmdbApiKey}&with_genres=${genreName}&page=${page}`;
 				}
-				//! we need this to fetch popular movies coz at start no genre/category is selected by the user hence it will be our home page
+				// we need this to fetch popular movies coz at start no genre/category is selected by the user hence it will be our home page
 				return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
 			},
 		}),

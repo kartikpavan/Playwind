@@ -3,6 +3,7 @@ import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Avatar from "../../assets/avatar.png";
 import { motion } from "framer-motion";
+import Search from "../Search/Search";
 
 const Navbar = () => {
 	console.log("Navbar");
@@ -27,10 +28,7 @@ const Navbar = () => {
 					</label>
 				</div>
 				<div className="relative flex items-center justify-center ">
-					<input
-						type="text"
-						className="bg-inherit w-full max-w-[180px] md:max-w-xs  px-8 py-2 outline-none text-white border-b-2"
-					/>
+					<Search />
 
 					<BiSearch size={22} className="absolute top-3 left-1" color={"white"} />
 				</div>
