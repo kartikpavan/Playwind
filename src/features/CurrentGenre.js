@@ -10,7 +10,7 @@ export const genre = createSlice({
 	reducers: {
 		selectGenre: (state, action) => {
 			console.log(action.payload);
-			// state.genreName = action.payload;
+			state.genreName = action.payload;
 		},
 	},
 });

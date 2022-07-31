@@ -19,7 +19,18 @@ export const tmdbApi = createApi({
 
 		//* Get Movies by [type]
 		getMovies: builder.query({
-			query: () => `movie/popular?page=${page}&api_key=${tmdbApiKey}`,
+			query: ({ genreName, page }) => {
+				//* get Movies by category like popular , trending etc
+				if (genreName && typeof genreName === "string") {
+					return `movie/${genreName}?api_key=${tmdbApiKey}&page=${page}}`;
+				}
+				//* Get movies by genre like comedy, thriller etc
+				if (genreName && typeof genreName === "number") {
+					return `discover/movie?api_key=${tmdbApiKey}&with_genres=${genreName}&page=${page}`;
+				}
+				//! we need this to fetch popular movies coz at start no genre/category is selected by the user hence it will be our home page
+				return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
+			},
 		}),
 	}),
 });

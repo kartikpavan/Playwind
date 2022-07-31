@@ -18,7 +18,7 @@ const Sidebar = () => {
 	const { data, error, isLoading } = useGetGenresQuery();
 	const dispatch = useDispatch();
 
-	console.log(data);
+	// console.log(data);
 	return (
 		<div>
 			<Link

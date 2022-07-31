@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Spinner, MovieList } from "../../components";
 import { useSelector } from "react-redux";
 import { useGetMoviesQuery } from "../../services/TMDB";
+import { selectGenre } from "../../features/CurrentGenre";
 
 const Movies = () => {
-	const { data, error, isLoading } = useGetMoviesQuery();
-
-	console.log(data);
-
+	const [page, setPage] = useState(1);
+	const { genreName } = useSelector((state) => state.currentGenre);
+	const { data, error, isLoading } = useGetMoviesQuery({ genreName, page });
+	// console.log(data);
 	if (!data?.results.length) {
 		return (
 			<div className="w-full flex item justify-center m-2">
