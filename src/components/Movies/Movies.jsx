@@ -9,6 +9,7 @@ const Movies = () => {
 	const { genreName, searchQuery } = useSelector((state) => state.currentGenre);
 	const { data, error, isFetching } = useGetMoviesQuery({ genreName, page, searchQuery });
 	console.log(data);
+
 	if (!data?.results.length) {
 		return (
 			<div className="w-full flex item justify-center m-2">

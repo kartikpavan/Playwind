@@ -30,12 +30,6 @@ const Movie = ({ movie, index }) => {
 						<p className="text-sm text-gray-400">
 							{moment(movie.release_date).format("MMMM Do, YYYY")}
 						</p>
-						{/* <div>
-						<div class="rating rating-sm flex items-center justify-center gap-1">
-							<input type="radio" class="mask mask-star-2 bg-orange-400" />
-							<p className="text-lg">{movie?.vote_average} </p>
-						</div>
-					</div> */}
 						<div className="absolute top-0 right-0">
 							<div className=" text-black badge-md bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-700 rounded-full rounded-br-none">
 								{movie?.vote_average} &#9733;

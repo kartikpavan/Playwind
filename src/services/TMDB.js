@@ -1,10 +1,8 @@
 //RTK Query
 // Need to use the React-specific entry point to import createApi
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const tmdbApiKey = import.meta.env.VITE_MOVIE_API_KEY;
-// const page = 1; //! dummy variable
 
 // https://api.themoviedb.org/3/movie/popular?api_key=API_KEY&language=en-US&page=1
 
@@ -37,9 +35,15 @@ export const tmdbApi = createApi({
 				return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
 			},
 		}),
+		//Get A particular movie
+		getMovie: builder.query({
+			query: (id) => {
+				return `movie/${id}?api_key=${tmdbApiKey}&append_to_response=videos,credits`;
+			},
+		}),
 	}),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMoviesQuery, useGetGenresQuery } = tmdbApi;
+export const { useGetMoviesQuery, useGetGenresQuery, useGetMovieQuery } = tmdbApi;
