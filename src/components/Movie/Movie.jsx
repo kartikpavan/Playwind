@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import moment from "moment";
+import StarRatings from "react-star-ratings";
 
 const Movie = ({ movie, index }) => {
 	return (
@@ -27,14 +28,17 @@ const Movie = ({ movie, index }) => {
 							/>
 						)}
 						<p className="text-lg mt-2">{movie?.title}</p>
-						<p className="text-sm text-gray-400">
-							{moment(movie.release_date).format("MMMM Do, YYYY")}
+						<p className="text-xs text-gray-400">
+							<StarRatings
+								rating={movie?.vote_average / 2}
+								starRatedColor={"rgb(255, 165, 0)"}
+								starDimension={"20px"}
+								starSpacing={"2px"}
+							/>
+							<p className="mt-1">
+								{moment(movie.release_date).format("MMMM Do, YYYY")}
+							</p>
 						</p>
-						<div className="absolute top-0 right-0">
-							<div className=" text-black badge-md bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-700 rounded-full rounded-br-none">
-								{movie?.vote_average} &#9733;
-							</div>
-						</div>
 					</Link>
 				</div>
 			</motion.div>
