@@ -13,8 +13,7 @@ const Movies = () => {
 	if (!data?.results.length) {
 		return (
 			<div className="w-full flex item justify-center m-2">
-				<h1>No movies that match the name</h1>
-				<br />
+				{isFetching ? <Spinner /> : <h1>No movies that match the name</h1>}
 			</div>
 		);
 	}
