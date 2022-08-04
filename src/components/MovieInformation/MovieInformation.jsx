@@ -155,7 +155,7 @@ const MovieInformation = () => {
 									<div className="max-w-4xl w-full mx-auto mt-6 flex flex-col sm:flex-row justify-between">
 										<div className="grid grid-cols-1 ">
 											<div className=" btn-group">
-												<button class="btn btn-sm  btn-accent btn-outline gap-2">
+												<button className="btn btn-sm  btn-accent btn-outline gap-2">
 													<a
 														href={data?.homepage}
 														target="blank"
@@ -165,7 +165,7 @@ const MovieInformation = () => {
 													</a>
 													<BsGlobe />
 												</button>
-												<button class="btn btn-sm  btn-accent btn-outline gap-2">
+												<button className="btn btn-sm  btn-accent btn-outline gap-2">
 													<a
 														href={`https://www.imdb.com/title/${data?.imdb_id}`}
 														target="blank"
@@ -176,8 +176,12 @@ const MovieInformation = () => {
 													<FaImdb />
 												</button>
 												<button
-													class="btn btn-sm  btn-accent btn-outline gap-2"
-													onClick={() => {}}
+													className="btn btn-sm  btn-accent btn-outline gap-2"
+													onClick={() => {
+														document.getElementById(
+															"my-modal-4"
+														).checked = true;
+													}}
 												>
 													Trailer
 													<BiCameraMovie />
@@ -187,7 +191,7 @@ const MovieInformation = () => {
 										<div className="grid grid-cols-1 ">
 											<div className="btn-group">
 												<button
-													class="btn btn-sm  btn-accent btn-outline gap-2"
+													className="btn btn-sm  btn-accent btn-outline gap-2"
 													onClick={addToFavorites}
 												>
 													{isMovieFavorited ? "UnFavorite" : "Favorite"}
@@ -198,7 +202,7 @@ const MovieInformation = () => {
 													)}
 												</button>
 												<button
-													class="btn btn-sm  btn-accent btn-outline gap-2"
+													className="btn btn-sm  btn-accent btn-outline gap-2"
 													onClick={addToWatchList}
 												>
 													Watchlist
@@ -209,7 +213,7 @@ const MovieInformation = () => {
 													)}
 												</button>
 												<button
-													class="btn btn-sm  btn-accent btn-outline gap-2"
+													className="btn btn-sm  btn-accent btn-outline gap-2"
 													onClick={() => {}}
 												>
 													<Link
@@ -242,6 +246,35 @@ const MovieInformation = () => {
 							<MovieList movies={recommendations} numberOfMovies={12} />
 						) : null}
 					</div>
+
+					{/* <!-- Put this part before </body> tag --> */}
+					<input type="checkbox" id="my-modal-4" className="modal-toggle" />
+					<label for="my-modal-4" className="modal cursor-pointer">
+						<label
+							className="modal-box relative w-full max-w-4xl h-1/2 sm:h-2/3 p-0 "
+							for=""
+						>
+							{data?.videos?.results.length > 0 ? (
+								<iframe
+									autoPlay
+									title="Trailer"
+									src={`https://www.youtube.com/embed/${data?.videos?.results[0].key}`}
+									allow="autplay"
+									className="w-full h-full"
+									allowFullScreen
+								/>
+							) : (
+								<p className="text-3xl text-center font-semibold mt-32">
+									{" "}
+									Sorry No Movie trailers were listed for{" "}
+									<span className="underline text-blue-500">
+										{data?.title}
+									</span>{" "}
+									in our Database
+								</p>
+							)}
+						</label>
+					</label>
 				</div>
 			) : null}
 		</div>
