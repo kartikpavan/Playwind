@@ -21,7 +21,7 @@ const App = () => {
 				</div>
 				<div className="drawer-side border-r ">
 					<label for="my-drawer-2" className="drawer-overlay"></label>
-					<ul className="menu overflow-y-auto p-2 max-w-72 w-60 bg-base-100 text-base-content">
+					<ul className="menu overflow-y-auto p-2 max-w-72 w-66 bg-base-100 text-base-content">
 						{/* //! SIDBAR CONTENT HERE */}
 						<Sidebar />
 					</ul>

@@ -152,7 +152,7 @@ const MovieInformation = () => {
 												.slice(0, 6)}
 									</div>
 									{/* Misc */}
-									<div className="max-w-4xl w-full mx-auto mt-6 flex flex-col sm:flex-row justify-between">
+									<div className="max-w-4xl w-full mx-auto mt-6 flex flex-col sm:flex-row justify-evenly">
 										<div className="grid grid-cols-1 ">
 											<div className=" btn-group">
 												<button className="btn btn-sm  btn-accent btn-outline gap-2">

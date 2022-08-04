@@ -50,7 +50,8 @@ const Sidebar = () => {
 								<img
 									src={genreIcons[item.label.toLowerCase()]}
 									alt="/"
-									className="w-6 md:w-8"
+									className="w-6 md:w-8 "
+									color={"white"}
 								/>
 								<p>{item.label}</p>
 							</div>
