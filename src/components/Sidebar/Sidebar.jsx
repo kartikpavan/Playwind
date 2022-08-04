@@ -28,17 +28,9 @@ const Sidebar = () => {
 					document.getElementById("my-drawer-2").click();
 				}}
 			>
-				<motion.div
-					animate={{ rotate: 360 }}
-					transition={{
-						type: "spring",
-						damping: 10,
-						mass: 0.75,
-						stiffness: 100,
-					}}
-				>
+				<div>
 					<img src={Logo} alt="logo" />
-				</motion.div>
+				</div>
 			</Link>
 
 			<div className="divider"></div>

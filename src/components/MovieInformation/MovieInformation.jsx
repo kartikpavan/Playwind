@@ -1,4 +1,8 @@
 import React from "react";
+import { BsGlobe, BsHeartFill, BsHeart, BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { FaImdb } from "react-icons/fa";
+import { MdExposurePlus1, MdOutlineRemove } from "react-icons/md";
+import { BiCameraMovie } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
@@ -7,11 +11,18 @@ import Spinner from "../Spinner/Spinner";
 import StarRatings from "react-star-ratings";
 import genreIcons from "../../assets/genres";
 import { selectGenre } from "../../features/CurrentGenre";
+import moment from "moment";
 
 const MovieInformation = () => {
 	const { id } = useParams();
 	const { data, isFetching, error } = useGetMovieQuery(id);
 	const dispatch = useDispatch();
+
+	const isMovieFavorited = true; //! dummy variable remove it later
+	const isMovieWatchListed = true; //! dummy variable remove it later
+
+	const addToFavorites = () => {};
+	const addToWatchList = () => {};
 
 	return (
 		<div className="p-6">
@@ -27,7 +38,7 @@ const MovieInformation = () => {
 			) : isFetching ? (
 				<Spinner />
 			) : data ? (
-				<div className="flex flex-col sm:flex-row justify-between gap-2  mb-[30px]">
+				<div className="flex flex-col sm:flex-row justify-between gap-2 ">
 					<div>
 						{" "}
 						<img
@@ -36,16 +47,16 @@ const MovieInformation = () => {
 							className="rounded-2xl shadow-3xl w-40 h-auto  sm:w-[80%] mx-auto "
 						/>
 					</div>
-					<div className="mx-auto w-10/12">
+					<div className="mx-auto w-full md:w-9/12">
 						<div className="text-center ">
 							{/* Movie title and Tagline */}
 							<div>
-								<h1 className="text-4xl ">
+								<h1 className="text-5xl mt-2">
 									{data?.original_title} ({data?.release_date.split("-")[0]})
 								</h1>
-								<p className="mt-4">{data?.tagline}</p>
+								<p className="mt-4 text-lg">{data?.tagline}</p>
 							</div>
-							<div className="max-w-sm mx-auto mt-2">
+							<div className="max-w-lg mx-auto mt-2">
 								{/* Movie Rating , Runtime and Language */}
 								<div className="flex items-center justify-between my-6">
 									<div
@@ -62,8 +73,9 @@ const MovieInformation = () => {
 											{data?.vote_average.toFixed(1)}/10
 										</p>
 									</div>
-									<div className="font-semibold">
-										{data?.runtime} mins /{" "}
+									<div className="italic text-lg">
+										{data?.runtime} mins /
+										{moment(data?.release_date).format("MMM Do YYYY")} /
 										{data?.spoken_languages.length > 0
 											? data?.spoken_languages[0].name
 											: "N/a"}
@@ -96,14 +108,14 @@ const MovieInformation = () => {
 								</div>
 							</div>
 							{/* overview */}
-							<div className="max-w-2xl mx-auto my-4">
+							<div className="max-w-3xl mx-auto my-4">
 								<h1 className="text-2xl text-left py-2">Overview</h1>
 								<p className="text-left text-sm">{data?.overview}</p>
 							</div>
 							{/* Cast */}
-							<div className="max-w-2xl mx-auto mt-2">
+							<div className="max-w-3xl mx-auto mt-2">
 								<h1 className="text-2xl my-4 text-left">Top Cast</h1>
-								<div className="grid grid-cols-6 gap-x-2 gap-y-3">
+								<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-x-2 gap-y-3">
 									{data &&
 										data?.credits?.cast
 											.map(
@@ -125,10 +137,73 @@ const MovieInformation = () => {
 														</Link>
 													)
 											)
-											.slice(0, 6)}
+											.slice(0, 5)}
 								</div>
 								{/* Misc */}
-								<div></div>
+								<div className="max-w-4xl w-full mx-auto mt-6 flex flex-col sm:flex-row justify-between">
+									<div className="grid grid-cols-1 ">
+										<div className=" btn-group">
+											<button class="btn btn-sm  btn-accent btn-outline gap-2">
+												<a
+													href={data?.homepage}
+													target="blank"
+													rel="noopener noreferrer"
+												>
+													Website
+												</a>
+												<BsGlobe />
+											</button>
+											<button class="btn btn-sm  btn-accent btn-outline gap-2">
+												<a
+													href={`https://www.imdb.com/title/${data?.imdb_id}`}
+													target="blank"
+													rel="noopener noreferrer"
+												>
+													IMDB
+												</a>
+												<FaImdb />
+											</button>
+											<button
+												class="btn btn-sm  btn-accent btn-outline gap-2"
+												onClick={() => {}}
+											>
+												Trailer
+												<BiCameraMovie />
+											</button>
+										</div>
+									</div>
+									<div className="grid grid-cols-1 ">
+										<div className="btn-group">
+											<button
+												class="btn btn-sm  btn-accent btn-outline gap-2"
+												onClick={addToFavorites}
+											>
+												{isMovieFavorited ? "UnFavorite" : "Favorite"}
+												{isMovieFavorited ? <BsHeart /> : <BsHeartFill />}
+											</button>
+											<button
+												class="btn btn-sm  btn-accent btn-outline gap-2"
+												onClick={addToWatchList}
+											>
+												Watchlist
+												{isMovieWatchListed ? (
+													<MdOutlineRemove />
+												) : (
+													<MdExposurePlus1 />
+												)}
+											</button>
+											<button
+												class="btn btn-sm  btn-accent btn-outline gap-2"
+												onClick={() => {}}
+											>
+												<Link to="/" className="flex items-center gap-2">
+													<p>Back</p>
+													<BsFillArrowLeftCircleFill />
+												</Link>
+											</button>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
