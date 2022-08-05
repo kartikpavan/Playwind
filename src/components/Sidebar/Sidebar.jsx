@@ -30,7 +30,7 @@ const Sidebar = () => {
 				}}
 			>
 				<div>
-					<img src={Logo} alt="logo" />
+					<img src={Logo} alt="logo" className="w-11/12 " />
 				</div>
 			</Link>
 
@@ -44,7 +44,10 @@ const Sidebar = () => {
 						<motion.div
 							whileHover={{ scale: 1.07 }}
 							whileTap={{ scale: 0.9 }}
-							onClick={() => dispatch(selectGenre(item.value))}
+							onClick={() => {
+								dispatch(selectGenre(item.value));
+								document.getElementById("my-drawer-2").click();
+							}}
 							className="py-3 px-2 hover:bg-[#5bb5bce0]  "
 						>
 							<div className="flex items-center gap-2">
@@ -74,7 +77,10 @@ const Sidebar = () => {
 							<motion.div
 								whileHover={{ scale: 1.07 }}
 								whileTap={{ scale: 0.9 }}
-								onClick={() => dispatch(selectGenre(genre.id))}
+								onClick={() => {
+									dispatch(selectGenre(genre.id));
+									document.getElementById("my-drawer-2").click();
+								}}
 								className="py-3 px-2 hover:bg-base-300 w-full "
 							>
 								<div className="flex items-center gap-2">

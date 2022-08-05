@@ -56,12 +56,12 @@ const Actors = () => {
 								<h2 className="text-xl pl-1">Origin: {data?.place_of_birth} </h2>
 							)}
 							<p className="text-sm pl-1">{data?.biography}</p>
-							<div className="mt-10 flex flex-col items-center justify-around gap-4">
+							<div className="mt-10 flex flex-col sm:flex-row items-center justify-around gap-4">
 								<a
 									href={`https://www.imdb.com/name/${data?.imdb_id}`}
 									target="_blank"
 									rel="noreferrer"
-									className="btn btn-secondary w-32"
+									className="btn btn-primary w-32"
 								>
 									IMDB
 								</a>
