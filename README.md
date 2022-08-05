@@ -1,3 +1,3 @@
 # Playwind
 LIVE @ https://playwind.vercel.app/
-![image](https://user-images.githubusercontent.com/81632171/182545410-1085d79b-0c0c-46e0-9772-afd614b7d687.png)
+![Screenshot 2022-08-05 142300](https://user-images.githubusercontent.com/81632171/183041179-23a09b39-fed8-42f3-bc27-dfab72026e14.png)
