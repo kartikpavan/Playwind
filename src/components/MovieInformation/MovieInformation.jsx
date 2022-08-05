@@ -3,6 +3,7 @@ import { BsGlobe, BsHeartFill, BsHeart, BsFillArrowLeftCircleFill } from "react-
 import { FaImdb } from "react-icons/fa";
 import { MdExposurePlus1, MdOutlineRemove } from "react-icons/md";
 import { BiCameraMovie } from "react-icons/bi";
+import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
@@ -99,18 +100,25 @@ const MovieInformation = () => {
 													to="/"
 													onClick={() => dispatch(selectGenre(genre.id))}
 												>
-													<div className="flex gap-2 items-center">
+													<motion.div
+														whileHover={{
+															scale: 1.2,
+															textDecoration: "underline",
+															textUnderlineOffset: "5px",
+														}}
+														whileTap={{ scale: 0.9 }}
+														className="flex gap-2 items-center"
+													>
 														<img
 															src={
 																genreIcons[genre.name.toLowerCase()]
 															}
 															alt={genre.name}
 															className="w-8 "
+															id="invertImg"
 														/>
-														<p className="text-md underline-offset-2 underline decoration-cyan-500">
-															{genre.name}
-														</p>
-													</div>
+														<p className="text-md ">{genre.name}</p>
+													</motion.div>
 												</Link>
 											);
 										})}
@@ -155,7 +163,7 @@ const MovieInformation = () => {
 									<div className="max-w-4xl w-full mx-auto mt-6 flex flex-col sm:flex-row justify-evenly">
 										<div className="grid grid-cols-1 ">
 											<div className=" btn-group">
-												<button className="btn btn-sm  btn-accent btn-outline gap-2">
+												<button className="btn btn-sm btn-info btn-outline gap-2">
 													<a
 														href={data?.homepage}
 														target="blank"
@@ -165,7 +173,7 @@ const MovieInformation = () => {
 													</a>
 													<BsGlobe />
 												</button>
-												<button className="btn btn-sm  btn-accent btn-outline gap-2">
+												<button className="btn btn-sm  btn-info btn-outline gap-2">
 													<a
 														href={`https://www.imdb.com/title/${data?.imdb_id}`}
 														target="blank"
@@ -176,7 +184,7 @@ const MovieInformation = () => {
 													<FaImdb />
 												</button>
 												<button
-													className="btn btn-sm  btn-accent btn-outline gap-2"
+													className="btn btn-sm  btn-info btn-outline gap-2"
 													onClick={() => {
 														document.getElementById(
 															"my-modal-4"
@@ -191,7 +199,7 @@ const MovieInformation = () => {
 										<div className="grid grid-cols-1 ">
 											<div className="btn-group">
 												<button
-													className="btn btn-sm  btn-accent btn-outline gap-2"
+													className="btn btn-sm  btn-info btn-outline gap-2"
 													onClick={addToFavorites}
 												>
 													{isMovieFavorited ? "UnFavorite" : "Favorite"}
@@ -202,7 +210,7 @@ const MovieInformation = () => {
 													)}
 												</button>
 												<button
-													className="btn btn-sm  btn-accent btn-outline gap-2"
+													className="btn btn-sm  btn-info btn-outline gap-2"
 													onClick={addToWatchList}
 												>
 													Watchlist
@@ -213,7 +221,7 @@ const MovieInformation = () => {
 													)}
 												</button>
 												<button
-													className="btn btn-sm  btn-accent btn-outline gap-2"
+													className="btn btn-sm  btn-info btn-outline gap-2"
 													onClick={() => {}}
 												>
 													<Link

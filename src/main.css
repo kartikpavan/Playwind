@@ -32,3 +32,8 @@ body {
 	/* Microsoft Edge */
 	color: red;
 }
+
+#invertImg {
+	-webkit-filter: invert(1);
+	filter: invert(1);
+}

@@ -10,7 +10,7 @@ const Navbar = () => {
 	const isAuthenticated = true;
 	return (
 		<main>
-			<nav className="w-full h-[80px] bg-accent-focus flex items-center justify-between px-2 md:px-8 py-4">
+			<nav className="w-full h-[80px] bg-primary flex items-center justify-between px-2 md:px-8 py-4">
 				<div className="lg:hidden">
 					<label className="swap swap-rotate" htmlFor="my-drawer-2">
 						{/* <!-- this hidden checkbox controls the state --> */}

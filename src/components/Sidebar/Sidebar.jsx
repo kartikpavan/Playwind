@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/logo3.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useGetGenresQuery } from "../../services/TMDB";
@@ -35,7 +35,7 @@ const Sidebar = () => {
 
 			<div className="divider"></div>
 
-			<p className="text-md font-semibold text-accent-focus tracking-wide">Categories</p>
+			<p className="text-md font-semibold text-info tracking-wide">Categories</p>
 
 			{categories.map((item) => {
 				return (
@@ -52,6 +52,7 @@ const Sidebar = () => {
 									alt="/"
 									className="w-6 md:w-8 "
 									color={"white"}
+									id="invertImg"
 								/>
 								<p>{item.label}</p>
 							</div>
@@ -60,7 +61,7 @@ const Sidebar = () => {
 				);
 			})}
 			<div className="divider"></div>
-			<p className="text-md font-semibold text-accent-focus tracking-wide">Genres</p>
+			<p className="text-md font-semibold text-info tracking-wide">Genres</p>
 			{error ? (
 				<h1 className="text-2xl text-red-400">There was an Error</h1>
 			) : isFetching ? (
@@ -80,6 +81,7 @@ const Sidebar = () => {
 										src={genreIcons[genre.name.toLowerCase()]}
 										alt="/"
 										className="w-6 md:w-8"
+										id="invertImg"
 									/>
 									<p>{genre.name}</p>
 								</div>
