@@ -7,6 +7,7 @@ import Spinner from "../Spinner/Spinner";
 import genreIcons from "../../assets/genres";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGenre } from "../../features/CurrentGenre";
+import { Scrollbars } from "react-custom-scrollbars";
 
 const categories = [
 	{ label: "Popular", value: "popular" },
@@ -20,7 +21,7 @@ const Sidebar = () => {
 
 	// console.log(data);
 	return (
-		<div>
+		<Scrollbars autoHide autoHideTimeout={1000} autoHideDuration={200}>
 			<Link
 				to="/"
 				className="flex items-center justify-center pt-4 hover:scale-105 duration-200 "
@@ -90,7 +91,7 @@ const Sidebar = () => {
 					);
 				})
 			) : null}
-		</div>
+		</Scrollbars>
 	);
 };
 

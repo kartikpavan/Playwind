@@ -48,7 +48,6 @@ const MovieInformation = () => {
 				<div>
 					<div className="flex flex-col sm:flex-row justify-between gap-2 ">
 						<div>
-							{" "}
 							<img
 								src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
 								alt={data?.original_title}
