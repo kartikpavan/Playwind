@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGetActorQuery, useGetMoviesByActorIdQuery } from "../../services/TMDB";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import { BiArrowBack } from "react-icons/bi";
 import MovieList from "../MovieList/MovieList";
+import Pagination from "../Pagination/Pagination";
 
 const Actors = () => {
+	const [page, setPage] = useState(1);
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const page = 1;
+
 	const { data, isFetching, error } = useGetActorQuery(id);
 	const {
 		data: ActorMovieData,
 		isFetching: ActorMovieFetching,
 		error: ActorMovieError,
 	} = useGetMoviesByActorIdQuery({ id, page });
-	console.log("ActorMovieData", ActorMovieData);
 
+	console.log("ActorMovieData", ActorMovieData);
 	return (
 		<div className="p-6">
 			{error ? (
@@ -89,6 +91,11 @@ const Actors = () => {
 					</div>
 				</div>
 			) : null}
+			<Pagination
+				currentPage={page}
+				setPage={setPage}
+				totalPages={ActorMovieData?.total_pages}
+			/>
 		</div>
 	);
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Spinner, MovieList } from "../../components";
+import { Spinner, MovieList, Pagination } from "../../components";
 import { useSelector } from "react-redux";
 import { useGetMoviesQuery } from "../../services/TMDB";
 import { selectGenre } from "../../features/CurrentGenre";
@@ -31,6 +31,9 @@ const Movies = () => {
 					</>
 				) : null}
 			</h1>
+			<div className=" my-6">
+				<Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
+			</div>
 		</div>
 	);
 };
