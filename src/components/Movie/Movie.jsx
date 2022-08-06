@@ -24,7 +24,7 @@ const Movie = ({movie}) => {
                     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
                     : "https://www.fillmurray.com/200/300"
                 }
-                alt={movie.title}
+                alt={title}
                 className="rounded-2xl "
               />
             )}
