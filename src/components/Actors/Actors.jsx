@@ -91,6 +91,7 @@ const Actors = () => {
 					</div>
 				</div>
 			) : null}
+
 			<Pagination
 				currentPage={page}
 				setPage={setPage}

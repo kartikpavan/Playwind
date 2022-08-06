@@ -1,8 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const Profile = () => {
-	console.log("Profile");
-	return <div>Profile</div>;
-};
+function Profile() {
+  return (
+    <section>
+      <div><h1> My name is kartik</h1></div>
+    </section>
+  );
+}
 
 export default Profile;

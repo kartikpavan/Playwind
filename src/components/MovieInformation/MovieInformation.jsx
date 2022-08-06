@@ -4,8 +4,7 @@ import { FaImdb } from "react-icons/fa";
 import { MdExposurePlus1, MdOutlineRemove } from "react-icons/md";
 import { BiCameraMovie } from "react-icons/bi";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { useGetMovieQuery, useGetRecommendationsQuery } from "../../services/TMDB";
 import Spinner from "../Spinner/Spinner";
@@ -25,7 +24,7 @@ const MovieInformation = () => {
 	} = useGetRecommendationsQuery({ list: "/recommendations", movieId: id });
 	const dispatch = useDispatch();
 
-	const isMovieFavorited = true; //! dummy variable remove it later
+	const isMovieFavorite = true; //! dummy variable remove it later
 	const isMovieWatchListed = true; //! dummy variable remove it later
 
 	const addToFavorites = () => {};
@@ -68,7 +67,7 @@ const MovieInformation = () => {
 									<div className="flex items-center justify-between my-6">
 										<div
 											className="flex items-center flex-col justify-center
-                   gap-0 sm:flex-row sm:gap-2 sm:items-end"
+                   									gap-0 sm:flex-row sm:gap-2 sm:items-end"
 										>
 											<StarRatings
 												rating={data?.vote_average / 2}
@@ -201,8 +200,8 @@ const MovieInformation = () => {
 													className="btn btn-sm  btn-info btn-outline gap-2"
 													onClick={addToFavorites}
 												>
-													{isMovieFavorited ? "UnFavorite" : "Favorite"}
-													{isMovieFavorited ? (
+													{isMovieFavorite ? "UnFavorite" : "Favorite"}
+													{isMovieFavorite ? (
 														<BsHeart />
 													) : (
 														<BsHeartFill />
