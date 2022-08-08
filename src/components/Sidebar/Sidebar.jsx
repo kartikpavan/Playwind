@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useGetGenresQuery } from "../../services/TMDB";
 import Spinner from "../Spinner/Spinner";
 import genreIcons from "../../assets/genres";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { selectGenre } from "../../features/CurrentGenre";
 import { Scrollbars } from "react-custom-scrollbars";
 

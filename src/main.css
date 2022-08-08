@@ -4,36 +4,51 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	margin: 0;
-	padding: 0;
-	font-family: "Noto Sans", sans-serif;
-	-webkit-font-smoothing: antialiased;
+html::-webkit-scrollbar {
+    width: 6px;
+}
 
-	scroll-behavior: smooth;
+html::-webkit-scrollbar-track {
+    background-color: #000;
+    border-radius: 100px;
 }
+
+html::-webkit-scrollbar-thumb {
+    background-color: #6366f1;
+    border-radius: 100px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 ::placeholder {
-	/* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: red;
-	opacity: 1; /* Firefox */
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
-	/* Internet Explorer 10-11 */
-	color: red;
+    /* Internet Explorer 10-11 */
+    color: red;
 }
 
 ::-ms-input-placeholder {
-	/* Microsoft Edge */
-	color: red;
+    /* Microsoft Edge */
+    color: red;
 }
 
 #invertImg {
-	-webkit-filter: invert(1);
-	filter: invert(1);
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }
