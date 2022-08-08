@@ -10,8 +10,8 @@ LIVE @ https://playwind.vercel.app/
 
   </tr>
   <tr>
-    <td><img src="/src/assets/screenshots/main.png" width=300 height=300></td>
-    <td><img src="/src/assets/screenshots/info.png" width=300 height=300></td>
+    <td><img src="/src/assets/screenshots/main.png" width=500 height=300></td>
+    <td><img src="/src/assets/screenshots/info.png" width=500 height=300></td>
 
 </tr>
  </table>
@@ -21,7 +21,7 @@ LIVE @ https://playwind.vercel.app/
      <td>User Profile</td>
 </tr>
 <tr>
-<td><img src="/src/assets/screenshots/actor.png" width=300 height=300></td>
-    <td><img src="/src/assets/screenshots/profile.png" width=300 height=300></td>
+<td><img src="/src/assets/screenshots/actor.png" width=500 height=300></td>
+    <td><img src="/src/assets/screenshots/profile.png" width=500 height=300></td>
 </tr>
 </table>
