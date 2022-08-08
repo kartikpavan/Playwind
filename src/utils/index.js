@@ -13,7 +13,7 @@ export const fetchToken = async () => {
     const {request_token} = data;
     if (data.success) {
       localStorage.setItem("request_token", request_token);
-      window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=${window.location.hostname}/approved`
+      window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://playwind.vercel.app/ approved`
     }
   } catch (error) {
     console.log("Sorry your token could not be created.", error)
