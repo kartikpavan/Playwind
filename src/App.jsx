@@ -1,6 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
-import {Actors, MovieInformation, Movies, Navbar, Profile, Sidebar} from "./components";
+import {Actors, MovieInformation, Movies, Navbar, Profile, Sidebar,} from "./components";
 
 const App = () => {
   return (

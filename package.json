@@ -9,7 +9,6 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@alan-ai/alan-sdk-web": "^1.8.34",
 		"@reduxjs/toolkit": "^1.8.3",
 		"axios": "^0.27.2",
 		"daisyui": "^2.20.0",

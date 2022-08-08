@@ -59,7 +59,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center justify-center gap-4 ">
           {!isAuthenticated ? (
-            <button className="btn-sm btn-outline" onClick={fetchToken}>Login</button>
+            <button className="btn btn-outline" onClick={fetchToken}>Login</button>
           ) : (
             <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
               <Link to={`/profile/${user.id}`}>

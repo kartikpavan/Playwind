@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@alan-ai/alan-sdk-web@^1.8.34":
-  version "1.8.34"
-  resolved "https://registry.yarnpkg.com/@alan-ai/alan-sdk-web/-/alan-sdk-web-1.8.34.tgz#28bc84100f685af2cdc6f907a2af1f15d02bee5f"
-  integrity sha512-kJGfjPOtILwlqHu+SkHy7Zc26SawTTGlVoRDeubs7iVxtlSkuBxrLfJlMbk2Q0w3jLutJX5qT84yV/mGBdbxjg==
-
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.0.tgz#56c133824780de3174aed5ab6834f3026790154d"

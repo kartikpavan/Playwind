@@ -1,37 +1,89 @@
-import React from "react";
-import {BsFillArrowLeftCircleFill, BsGlobe, BsHeart, BsHeartFill} from "react-icons/bs";
+import React, {useEffect, useState} from "react";
+import {BsFillArrowLeftCircleFill, BsGlobe, BsHeart, BsHeartFill,} from "react-icons/bs";
 import {FaImdb} from "react-icons/fa";
 import {MdExposurePlus1, MdOutlineRemove} from "react-icons/md";
 import {BiCameraMovie} from "react-icons/bi";
 import {motion} from "framer-motion";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useParams} from "react-router-dom";
-import {useGetMovieQuery, useGetRecommendationsQuery} from "../../services/TMDB";
+import {useGetListQuery, useGetMovieQuery, useGetRecommendationsQuery,} from "../../services/TMDB";
 import Spinner from "../Spinner/Spinner";
 import StarRatings from "react-star-ratings";
 import genreIcons from "../../assets/genres";
 import {selectGenre} from "../../features/CurrentGenre";
 import moment from "moment";
 import MovieList from "../MovieList/MovieList";
+import axios from "axios";
+import {userSelector} from "../../features/auth.js";
 
 const MovieInformation = () => {
   const {id} = useParams();
+  const {user} = useSelector(userSelector);
+  const dispatch = useDispatch();
+
   const {data, isFetching, error} = useGetMovieQuery(id);
+
   const {
     data: recommendations,
     isFetching: fetchingRecommendations,
-    error: recommendationError
+    error: recommendationError,
   } = useGetRecommendationsQuery({list: "/recommendations", movieId: id});
-  const dispatch = useDispatch();
 
-  const isMovieFavorite = true; //! dummy variable remove it later
-  const isMovieWatchListed = true; //! dummy variable remove it later
+  const {data: favoriteMovies} = useGetListQuery({
+    listName: "favorite/movies",
+    session_id: localStorage.getItem("session_id"),
+    accountId: user.id,
+    page: 1,
+  });
+  const {data: watchlistMovies} = useGetListQuery({
+    listName: "watchlist/movies",
+    session_id: localStorage.getItem("session_id"),
+    accountId: user.id,
+    page: 1,
+  });
 
-  const addToFavorites = () => {
+  // Making api calls to the TMBD Account
+  const [isMovieFavorite, setIsMovieFavorite] = useState(false);
+  const [isMovieWatchlist, setIsMovieWatchlist] = useState(false);
+  const addToFavorites = async () => {
+    await axios.post(
+      `https://api.themoviedb.org/3/account/${user.id}/favorite?api_key=${
+        import.meta.env.VITE_MOVIE_API_KEY
+      }&session_id=${localStorage.getItem("session_id")}`,
+      {
+        media_type: "movie",
+        media_id: id,
+        favorite: !isMovieFavorite,
+      }
+    );
+    setIsMovieFavorite((toggle) => !toggle);
   };
-  const addToWatchList = () => {
+  const addToWatchList = async () => {
+    await axios.post(
+      `https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${
+        import.meta.env.VITE_MOVIE_API_KEY
+      }&session_id=${localStorage.getItem("session_id")}`,
+      {
+        media_type: "movie",
+        media_id: id,
+        watchlist: !isMovieWatchlist,
+      }
+    );
+    setIsMovieWatchlist((toggle) => !toggle);
   };
-  console.log(recommendations);
+
+  useEffect(() => {
+    setIsMovieFavorite(
+      !!favoriteMovies?.results?.find((movie) => movie?.id === data?.id)
+    );
+  }, [favoriteMovies, data]);
+
+  useEffect(() => {
+    setIsMovieWatchlist(
+      !!watchlistMovies?.results?.find((movie) => movie?.id === data?.id)
+    );
+  }, [watchlistMovies, data]);
+
   return (
     <div className="p-6">
       {error ? (
@@ -39,8 +91,8 @@ const MovieInformation = () => {
           <Link to="/">
             Something went Wrong
             <span className="text-blue-600 italic font-semibold text-xl underline-offset-2 underline">
-							Go back ?
-						</span>
+              Go back ?
+            </span>
           </Link>
         </h1>
       ) : isFetching ? (
@@ -101,18 +153,11 @@ const MovieInformation = () => {
                           onClick={() => dispatch(selectGenre(genre.id))}
                         >
                           <motion.div
-                            whileHover={{
-                              scale: 1.2,
-                              textDecoration: "underline",
-                              textUnderlineOffset: "5px",
-                            }}
                             whileTap={{scale: 0.9}}
                             className="flex gap-2 items-center"
                           >
                             <img
-                              src={
-                                genreIcons[genre.name.toLowerCase()]
-                              }
+                              src={genreIcons[genre.name.toLowerCase()]}
                               alt={genre.name}
                               className="w-8 "
                               id="invertImg"
@@ -138,21 +183,15 @@ const MovieInformation = () => {
                         .map(
                           (item) =>
                             item.profile_path && (
-                              <Link
-                                key={item.id}
-                                to={`/actors/${item.id}`}
-                              >
+                              <Link key={item.id} to={`/actors/${item.id}`}>
                                 <img
                                   src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
                                   alt={item.name}
                                   className=" max-w-[7em] h-[9em] w-full object-cover rounded-xl hover:scale-105 duration-150"
                                 />
-                                <p className="text-sm">
-                                  {item?.name}
-                                </p>
+                                <p className="text-sm">{item?.name}</p>
                                 <p className="text-sm text-gray-500">
-                                  ({item?.character.split("/")[0]}
-                                  )
+                                  ({item?.character.split("/")[0]})
                                 </p>
                               </Link>
                             )
@@ -199,22 +238,18 @@ const MovieInformation = () => {
                     <div className="grid grid-cols-1 ">
                       <div className="btn-group">
                         <button
-                          className="btn btn-sm  btn-info btn-outline gap-2"
+                          className={`btn btn-sm ${isMovieFavorite ? "btn-error" : "btn-info"} btn-outline gap-2`}
                           onClick={addToFavorites}
                         >
                           {isMovieFavorite ? "UnFavorite" : "Favorite"}
-                          {isMovieFavorite ? (
-                            <BsHeart/>
-                          ) : (
-                            <BsHeartFill/>
-                          )}
+                          {isMovieFavorite ? <BsHeart/> : <BsHeartFill/>}
                         </button>
                         <button
-                          className="btn btn-sm  btn-info btn-outline gap-2"
+                          className={`btn btn-sm ${isMovieWatchlist ? "btn-error" : "btn-info"} btn-outline gap-2`}
                           onClick={addToWatchList}
                         >
                           Watchlist
-                          {isMovieWatchListed ? (
+                          {isMovieWatchlist ? (
                             <MdOutlineRemove/>
                           ) : (
                             <MdExposurePlus1/>
@@ -225,10 +260,7 @@ const MovieInformation = () => {
                           onClick={() => {
                           }}
                         >
-                          <Link
-                            to="/"
-                            className="flex items-center gap-2"
-                          >
+                          <Link to="/" className="flex items-center gap-2">
                             <p>Back</p>
                             <BsFillArrowLeftCircleFill/>
                           </Link>
@@ -246,8 +278,8 @@ const MovieInformation = () => {
             {recommendationError ? (
               <h1 className="text-2xl text-red-500">
                 {" "}
-                Something went wrong <br/> No movies to Recommend at this moment ,
-                Please try again later{" "}
+                Something went wrong <br/> No movies to Recommend at this
+                moment , Please try again later{" "}
               </h1>
             ) : fetchingRecommendations ? (
               <Spinner/>
@@ -258,9 +290,7 @@ const MovieInformation = () => {
           {/* <!-- Put this part before </body> tag --> */}
           <input type="checkbox" id="my-modal-4" className="modal-toggle"/>
           <label htmlFor="my-modal-4" className="modal cursor-pointer">
-            <label
-              className="modal-box relative w-full max-w-4xl h-1/2 sm:h-2/3 p-0 "
-            >
+            <label className="modal-box relative w-full max-w-4xl h-1/2 sm:h-2/3 p-0 ">
               {data?.videos?.results.length > 0 ? (
                 <iframe
                   title="Trailer"
@@ -272,9 +302,7 @@ const MovieInformation = () => {
               ) : (
                 <p className="text-3xl text-center font-semibold mt-32">
                   Sorry No Movie trailers were listed for{" "}
-                  <span className="underline text-blue-500">
-										{data?.title}
-									</span>
+                  <span className="underline text-blue-500">{data?.title}</span>
                   in our Database
                 </p>
               )}
