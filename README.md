@@ -1,5 +1,5 @@
 # Playwind
-LIVE @ playwind.vercel.app/
+LIVE @ https://playwind.vercel.app/
 ### Welcome to playwind 
 * Browse upcoming , trending and popular movies all at one place .
 * Sign up with TMDB account and either favorite movie or add to watch later at no hassle.
