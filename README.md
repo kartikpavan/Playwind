@@ -13,7 +13,7 @@ LIVE @ playwind.vercel.app/
     <td><img src="https://user-images.githubusercontent.com/81632171/188087862-ad3b8a5e-7bf0-423c-8335-31d300921ed5.png" alt="2" width = 640px height = 360px></td>
   </tr>
   <tr>
-    <td>    <td><img src="https://user-images.githubusercontent.com/81632171/188087871-e3c487f0-59df-46bd-a93d-140fa133ef73.png" alt="3" width = 1400px height = 360px></td>
+    <td>    <td><img src="https://user-images.githubusercontent.com/81632171/188087871-e3c487f0-59df-46bd-a93d-140fa133ef73.png" alt="3" width =640px height = 360px></td>
  </td>
   </tr>
  
