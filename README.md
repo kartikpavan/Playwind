@@ -2,9 +2,9 @@
 LIVE @ playwind.vercel.app/
 ### Welcome to playwind 
 * Browse upcoming , trending and popular movies all at one place .
-* Sign up and either favorite movie or add to watch later at no hassle.
+* Sign up with TMDB account and either favorite movie or add to watch later at no hassle.
 * Made Possibe using React , Redux, Rtk Query , TailwindCSS and Daisy UI
-* 
+
 ![home](https://user-images.githubusercontent.com/81632171/188088224-6c075841-253b-40a4-8978-e4ade2118aae.png)
 
 <table>
