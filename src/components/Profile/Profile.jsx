@@ -35,7 +35,6 @@ function Profile() {
       <div className="flex justify-between items-center py-4">
 
         <h3 className="text-md md:text-2xl text-info-content border border-info-content p-2">
-
           {user.username}
         </h3>
         <button className="btn btn-accent flex gap-4" onClick={logOut}>
